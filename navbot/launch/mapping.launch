@@ -1,0 +1,28 @@
+<launch>
+ 
+ <!-- launch openni driver for kinect -->
+ <include file="$(find openni_launch)/launch/openni.launch"/>
+
+ <!-- launch depthimage_to_laserscan for kinect -->
+ <include file="$(find kinect_launch)/launch/cameralaunch.launch"/>
+
+ <!-- launch pid and twist to motor -->
+
+ <include file="$(find navbot_control)/launch/pid_control.launch"/>
+
+
+ <!-- launch robot_setup_tf node for static transformations -->
+ <node pkg="robot_setup_tf" type="tf_broadcaster" name="robot_static_tf" output="screen">
+ </node>
+
+ <!-- launch ros control for odometry -->
+ <include file="$(find navbot_control)/launch/hw_control.launch"/>
+ 
+
+ <!-- launch gmapping 
+ <include file="$(find gmapping)/launch/slam_gmapping.launch"/>
+ -->
+ 
+ 
+
+</launch> 

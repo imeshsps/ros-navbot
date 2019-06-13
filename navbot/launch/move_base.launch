@@ -1,0 +1,21 @@
+<launch>
+
+   <master auto="start"/>
+ 
+
+ <!--- Run AMCL  -->
+    <include file="$(find navbot)/launch/amcl_diff.launch" />
+
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find navbot)/param/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find navbot)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find navbot)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find navbot)/param/global_costmap_params.yaml" command="load" /> 
+    <rosparam file="$(find navbot)/param/base_local_planner_params.yaml" command="load" />
+    <!---  <remap from="cmd_vel" to="mobile_base_controller/cmd_vel"/> -->
+    <param name="controller_frequency" value="10.0"/>
+
+
+ </node>
+
+</launch> 
