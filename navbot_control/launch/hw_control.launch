@@ -1,0 +1,42 @@
+<!-- https://answers.ros.org/question/221093/basic-diff_drive-question/ -->
+<!-- https://github.com/ros-controls/ros_controllers/tree/kinetic-devel/diff_drive_controller/test -->
+
+<launch>
+
+	<!-- Load robot model -->
+<!--
+  
+    
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find navbot_control)/rviz/urdf.rviz" />
+-->
+<!--
+    <rosparam command="load" 
+              file="$(find navbot_control)/config/navbot_control.yaml"/>
+-->
+    <arg name="model" default="$(find navbot_control)/urdf/navbot.urdf"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+
+    <node name="navbot_base_node" 
+          pkg="navbot_control" 
+          type="navbot_control_node"
+           >
+   <!-- <remap from="/my_robot/right_wheel_vel" to="rwheel_tangent_vel_target"/>
+    <remap from="/my_robot/left_wheel_vel" to="lwheel_tangent_vel_target"/> 
+  -->
+ </node>
+
+    <!-- Load controller config launch-prefix="taskset -c 2" -->
+
+    <rosparam command="load" 
+              file="$(find navbot_control)/config/navbot_control_common.yaml"/>
+
+
+    <node name="controller_spawner" 
+          pkg="controller_manager" 
+          type="spawner" 
+          output="screen" 
+          args="mobile_base_controller"/> 
+          
+</launch>

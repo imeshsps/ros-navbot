@@ -1,0 +1,66 @@
+<launch>
+    <node name="controller" pkg="pid" type="controller" ns="left_wheel" output="screen" >
+      <param name="Kp" value="5.0" />
+      <param name="Ki" value="0.0" />
+      <param name="Kd" value="0.1" />
+      <param name="upper_limit" value="10" />
+      <param name="lower_limit" value="-10" />
+      <param name="windup_limit" value="10" />
+      <param name="max_loop_frequency" value="100.0" />
+      <param name="min_loop_frequency" value="100.0" />
+      <remap from="setpoint" to="/setpoint" />
+      
+      <param name="setpoint_topic" value="/lwheel_vtarget"/>
+      
+      
+     </node>
+
+
+
+    <node name="controller" pkg="pid" type="controller" ns="right_wheel" output="screen" >
+      <param name="Kp" value="5.0" />
+      <param name="Ki" value="0.0" />
+      <param name="Kd" value="0.1" />
+      <param name="upper_limit" value="10" />
+      <param name="lower_limit" value="-10" />
+      <param name="windup_limit" value="10" />
+      <param name="max_loop_frequency" value="100.0" />
+      <param name="min_loop_frequency" value="100.0" />
+      <remap from="setpoint" to="/setpoint" />
+      
+      <param name="setpoint_topic" value="/rwheel_vtarget"/>
+
+     </node>
+
+ <node name="servo_sim_node" pkg="pid" type="plant_sim" ns="right_wheel" output="screen" >
+      <param name="plant_order" value="2" />
+      <param name="reverse_acting" value="true" />
+    </node>
+
+<node name="servo_sim_node" pkg="pid" type="plant_sim" ns="left_wheel" output="screen" >
+      <param name="plant_order" value="2" />
+    </node>
+
+
+
+
+<!--
+
+         <param name="topic_from_plant" value="/my_robot/right_wheel_angle"/>
+      <param name="topic_from_controller" value="/rmotor_cmd"/>
+<param name="topic_from_plant" value="/my_robot/left_wheel_angle"/>
+<param name="topic_from_controller" value="/lmotor_cmd"/>
+      
+
+    <node name="setpoint_node" pkg="pid" type="setpoint_node" output="screen" />
+
+
+
+    <node name="rqt_plot" pkg="rqt_plot" type="rqt_plot"
+    args="/right_wheel/control_effort/data /right_wheel/state/data
+    /left_wheel/control_effort/data /left_wheel/state/data /setpoint/data" />
+
+    
+-->
+
+</launch>

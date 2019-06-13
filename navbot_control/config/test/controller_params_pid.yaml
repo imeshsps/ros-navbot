@@ -1,0 +1,16 @@
+# PID package Controller parameters
+
+Kp: 200.0
+Ki: 50.0
+Kd: 100.0
+
+upper_limit:  1500   # should be a little bigger than max ang vel from base controller
+lower_limit: -1500
+windup_limit: 15
+
+min_loop_frequency: 50.0
+max_loop_frequency: 125.0
+
+# topic_from_controller: "/robot/wheel_left/cmd_vel/closed_loop"   # needs to be remapped for each wheel
+# topic_from_plant:      "/robot/wheel_left/velocity/angular"      # needs to be remapped for each wheel
+# setpoint_topic:        "/robot/wheel_left/cmd_vel/open_loop"     # needs to be remapped for each wheel
