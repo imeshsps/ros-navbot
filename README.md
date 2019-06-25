@@ -14,7 +14,7 @@ kinect_launch - Launch file for depth image to laser scan node.
 
 navbot - Contain following launch files.
 
-     amcl_diff.launch        - launch amcl
+   amcl_diff.launch        - launch amcl
 	mapping.launch 	        - used to combine and launch several launch files to start robot.
 	move_base.launch        - launch fine for ROS Navigation
 	navigation.launch       - another launch file used to combine and launch several launch files to start robot. 
