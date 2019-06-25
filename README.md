@@ -1,11 +1,11 @@
 # ros-navbot
 Indoor Mapping and Navigation Robot Build with ROS and Nvidia Jetson Nano
 
-Please Go to wiki for more information about the build.
+### Please Go to wiki for more information about the build.
 
 This resipotary is still under progress. I have to clean the codes, mostly for dependencies and launch files. Other than that it is tested and working fine. 
 
-Useage of the each packeges as follows..
+## Useage of the each packeges
 
 
 differential_drive - I started the build using most of the nodes from this package and eventually ended up replacing most of them with other nodes for various reasons. For final build, only twist to motors node used from this.
