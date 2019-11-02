@@ -1,0 +1,36 @@
+<launch>
+
+  <arg name="model" default="$(find navbot_control)/urdf/navbot.urdf"/>
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find navbot_control)/rviz/urdf.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+  <node pkg="openni_camera" type="openni_node" name="openni_camera" output="screen" respawn="true" >
+    <param name="device_type" value="1" />
+    <param name="registration_type" value="1" />
+    <param name="point_cloud_resolution" value="1" />
+    <param name="openni_depth_optical_frame" value="kinect_depth_optical_frame" />
+    <param name="openni_rgb_optical_frame" value="kinect_rgb_optical_frame" />
+    <param name="image_input_format" value="5" />
+    
+  </node>
+
+  <param name="robot_description" command="cat '$(find navbot_control)/urdf/navbot.urdf'" />
+    
+    <arg name="x" default="-2"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.1"/>
+    
+          
+    <rosparam file="$(find navbot_control)/config/navbot_control.yaml" command="load" />
+    
+    <node name="navbot_controller_manager" pkg="controller_manager" type="spawner"
+          respawn="false" output="screen" args="mobile_base_controller" />
+
+</launch>

@@ -1,0 +1,12 @@
+<launch>
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+      <remap from="scan" to="scan"/>
+       <param name="minimumScore" value="50"/>
+       <param name="maxUrange" value="5.5"/>
+       <param name="maxrange" value="5.5"/>
+       <param name="linearUpdate" value="0.2"/>
+       <param name="angularUpdate" value="0.25"/>
+       <param name="temporalUpdate" value="5.0"/>
+       <param name="delta" value="0.02"/>
+    </node>
+</launch>

@@ -1,0 +1,26 @@
+<launch>
+ 
+<!-- launch RPlidar -->
+ <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+
+
+ <!-- launch pid and twist to motor -->
+
+ <include file="$(find navbot_control)/launch/pid_control.launch"/>
+
+
+ <!-- launch robot_setup_tf node for static transformations -->
+ <node pkg="robot_setup_tf" type="tf_broadcaster_rplidar" name="robot_static_tf" output="screen">
+ </node>
+
+ <!-- launch ros control for odometry -->
+ <include file="$(find navbot_control)/launch/hw_control.launch"/>
+
+ <!-- launch rosserial -->
+ <include file="$(find navbot)/launch/wifi_comm.launch"/>
+
+  <!-- launch movebase -->
+ <include file="$(find navbot)/launch/move_base.launch"/>
+ 
+
+</launch> 

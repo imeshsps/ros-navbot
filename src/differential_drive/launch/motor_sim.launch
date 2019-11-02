@@ -1,0 +1,19 @@
+<launch>
+	
+	
+
+	<!-- simulate motor-->
+	
+   <node pkg="differential_drive" type="wheel_loopback.py" name="lwheel_sim">
+      <remap from="wheel" to="lwheel"/>
+      <remap from="motor" to="lmotor_cmd"/>
+      
+  </node>
+  <node pkg="differential_drive" type="wheel_loopback.py" name="rwheel_sim">
+      <remap from="wheel" to="rwheel"/>
+      <remap from="motor" to="rmotor_cmd"/>
+ 
+  </node>
+
+  
+</launch>

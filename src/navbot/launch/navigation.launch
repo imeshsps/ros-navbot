@@ -1,0 +1,20 @@
+<launch>
+ 
+ <!-- launch freenect driver for kinect -->
+ <include file="$(find openni_launch)/launch/openni.launch"/>
+
+ <!-- launch depthimage_to_laserscan for kinect -->
+ <include file="$(find kinect_launch)/launch/cameralaunch.launch"/>
+
+ <!-- launch differential drive packege for driver and odometry -->
+ <include file="$(find differential_drive)/launch/tf_controller.launch"/>
+
+ <!-- launch robot_setup_tf node for static transformations -->
+ <node pkg="robot_setup_tf" type="tf_broadcaster" name="robot_static_tf" output="screen">
+ </node>
+
+
+ 
+ 
+
+</launch> 

@@ -1,0 +1,25 @@
+<launch>
+
+    <node name="controller" pkg="pid" type="controller" ns="/robot/wheel_right" output="screen" >
+
+          <rosparam file="$(find navbot_control)/config/controller_params_pid.yaml"
+                    command="load"/>
+                    <param name="topic_from_controller" value="/rmotor_cmd"/>
+                    <param name="topic_from_plant" value="/my_robot/right_wheel_angle"/>
+                    <param name="setpoint_topic" value="/rwheel_vtarget"/>
+    </node>
+
+    <node name="controller" pkg="pid" type="controller" ns="/robot/wheel_left" output="screen" >
+
+
+          <rosparam file="$(find navbot_control)/config/controller_params_pid.yaml"
+                    command="load"/>
+
+
+                    <param name="topic_from_controller" value="/lmotor_cmd"/>
+                    <param name="topic_from_plant" value="/my_robot/left_wheel_angle"/>
+                    <param name="setpoint_topic" value="/lwheel_vtarget"/>
+    </node>
+
+</launch>
+

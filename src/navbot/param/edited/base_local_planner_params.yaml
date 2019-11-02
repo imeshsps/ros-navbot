@@ -1,0 +1,83 @@
+TrajectoryPlannerROS:
+  max_vel_x: 0.5 #tested 0.0285
+  min_vel_x: 0.2
+  max_vel_theta: 1.0
+  min_in_place_vel_theta: 0.4
+
+  acc_lim_theta: 10.0 #was 3.2
+  acc_lim_x: 2.5
+  acc_lim_y: 2.5
+
+#holonomic_robot: true
+
+# newly added 
+
+  escape_vel: -0.15
+  holonomic_robot: false
+
+# Goal Tolerance Parameters
+  yaw_goal_tolerance: 0.57      # 0.3
+  xy_goal_tolerance: 0.35       # 0.25
+
+# Forward Simulation Parameters
+  sim_time: 3.0                 # 3.0
+  vx_samples: 15
+  vtheta_samples: 24
+  controller_frequency: 10      # overwritten by move_base_params
+
+# Trajectory Scoring Parameters
+  meter_scoring: true
+  pdist_scale: 0.6
+  gdist_scale: 0.8
+  occdist_scale: 0.01
+  heading_lookahead: 0.0        # same as fwd_dist in DWA
+  heading_scoring: false
+  heading_scoring_timestep: 1.0
+  dwa: true
+  publish_cost_grid_pc: false
+  global_frame_id: "map" # "odom"       # should be the same as global frame in local costmap!
+
+# Oscillation Prevention Parameters
+  oscillation_reset_dist: 0.05  # overwritten by move_base_params
+
+# Global Plan Parameters
+  prune_plan: true
+
+
+# ---------------------------------------------------------------
+# DWA-specific params that are not included in base_local_planner
+DWAPlannerROS:
+
+  use_dwa: true                 # instead of Rollback
+  forward_point_distance: 0.00  # recommended 0.0 for diff_drive   # used to align the robot to the path
+  sim_time: 3.0                 # helps if robot is stuck 
+  vx_samples: 25  # 15  
+  vy_samples: 1   # -1              # for differential-drive robot vy samples doesn't make sense in terms of controller (linear.x and angular.z allowed only)
+  vth_samples: 25 # 24 
+
+  scaling_speed: 1.0            # The absolute value of the velocity at which to start scaling the robot's footprint, in m/s 
+
+  min_rot_vel: 1.35
+  max_rot_vel:  1.5
+
+  min_vel_x: 0.2
+  max_vel_x: 0.5
+
+  min_trans_vel: 0.00 # makes robot can't rotate in place?
+  max_trans_vel: 0.15
+
+  rot_stopped_vel: 0.10 # 0.2 
+  trans_stopped_vel: 0.00 # 0,00 can be difficult when trying to start but allows robot to rotate in place?
+
+  acc_lim_theta: 3.0
+  acc_lim_x: 3.0
+  acc_lim_y: 0.0
+  acc_limit_trans: 3.0
+
+  yaw_goal_tolerance: 0.45      
+  xy_goal_tolerance: 0.30       
+
+  max_scaling_factor: 0.2       # The maximum factor to scale the robot's footprint by 
+  stop_time_buffer: 0.3         # The amount of time that the robot must stop before a collision in order for a trajectory to be considered valid in seconds
+  prune_plan: true              # clears part of a path that robot already travelled
+ples: 1

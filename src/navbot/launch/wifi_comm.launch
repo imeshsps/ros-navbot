@@ -1,0 +1,19 @@
+<launch>
+ 
+ 
+ <!-- launch robot_setup_tf node for static transformations -->
+ <node pkg="navbot" type="serial_node_2.py" name="serial_node_2" output="screen">
+   <param name="port_name" value="tcp"/>
+ </node>
+ 
+ 
+ <!-- launch robot_setup_tf node for static transformations -->
+
+ <node pkg="navbot" type="serial_node_1.py" name="serial_node_1" output="screen">
+   <param name="port_name" value="tcp"/>
+ </node>
+ 
+
+
+
+</launch> 

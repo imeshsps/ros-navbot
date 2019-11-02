@@ -1,0 +1,21 @@
+<launch>
+
+   <master auto="start"/>
+
+     <node pkg="differential_drive" type="twist_to_motors.py" name="twist_to_motors" output="screen">
+      <rosparam param="base_width">0.22</rosparam>
+      </node>
+ 
+   <node pkg="navbot_control" type="gopigo_controller.py" respawn="false" name="pid_controller" output="screen">
+    
+    <remap from="lwheel_angular_vel_enc" to="my_robot/left_wheel_angle"/>
+    <remap from="rwheel_angular_vel_enc" to="my_robot/right_wheel_angle"/>
+    
+    <!--  
+    <remap from="lwheel_angular_vel_motor" to="my_robot/left_wheel_vel"/>
+    <remap from="rwheel_angular_vel_control" to="my_robot/right_wheel_vel"/>
+     -->
+
+ </node>
+
+</launch> 
