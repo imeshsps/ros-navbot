@@ -1,0 +1,8 @@
+prefix=/home/imesh/navbot/devel
+
+Name: differential_drive
+Description: Description of differential_drive
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/imesh/navbot/devel/lib 
+Requires: 

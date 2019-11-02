@@ -1,0 +1,8 @@
+prefix=/home/imesh/navbot/devel
+
+Name: rplidar_ros
+Description: Description of rplidar_ros
+Version: 1.10.0
+Cflags: 
+Libs: -L/home/imesh/navbot/devel/lib 
+Requires: 

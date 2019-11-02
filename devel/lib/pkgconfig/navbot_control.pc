@@ -1,0 +1,8 @@
+prefix=/home/imesh/navbot/devel
+
+Name: navbot_control
+Description: Description of navbot_control
+Version: 0.0.0
+Cflags: -I/home/imesh/navbot/src/navbot_control/include
+Libs: -L/home/imesh/navbot/devel/lib 
+Requires: controller_manager roscpp hardware_interface

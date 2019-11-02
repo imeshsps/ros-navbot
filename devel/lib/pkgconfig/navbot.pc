@@ -1,0 +1,8 @@
+prefix=/home/imesh/navbot/devel
+
+Name: navbot
+Description: Description of navbot
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/imesh/navbot/devel/lib 
+Requires: 
